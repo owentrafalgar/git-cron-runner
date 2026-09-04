@@ -1,6 +1,6 @@
 services:
   my-job:
-    image: ghcr.io/owentrafalgar/git-cron-runner:latest
+    image: ghcr.io/owentrafalgar/git-cron-runner:${IMAGE_TAG:-latest}
     container_name: my-job
     env_file:
       - stack.env

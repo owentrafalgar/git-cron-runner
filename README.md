@@ -29,6 +29,16 @@ All configuration is done via environment variables, typically in a `stack.env` 
 - `/repo` - persists the cloned repo between runs (avoids re-cloning every time)
 - `/status` - contains `status.status` (`TIMESTAMP=...` / `EXIT_CODE=...`) for external monitoring (e.g. a Checkmk local check)
 
+## Versioning
+
+Every push to `main` (including automated Dependabot merges) automatically creates a new semantic
+version tag (e.g. `v1.0.3`) and publishes the image under both that tag and `:latest` on GHCR.
+See the repo's Releases and Packages tabs for the full history.
+
+By default, `docker-compose.example.yml` uses `:latest`. To pin a specific version instead, set
+`IMAGE_TAG` (e.g. `IMAGE_TAG=v1.0.3`) as a Compose environment variable when deploying the stack
+(not inside `stack.env`, which is passed to the container itself).
+
 ## Setup
 
 1. Copy `docker-compose.example.yml` to `docker-compose.yml` (or paste into Portainer's stack editor).
