@@ -1,0 +1,10 @@
+services:
+  my-job:
+    image: ghcr.io/owentrafalgar/git-cron-runner:latest
+    container_name: my-job
+    env_file:
+      - stack.env
+    volumes:
+      - './repo:/repo'
+      - './status:/status'
+    restart: unless-stopped
