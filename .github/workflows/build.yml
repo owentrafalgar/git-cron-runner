@@ -39,10 +39,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/build-push-action@v5
+      - uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           tags: |
             ghcr.io/owentrafalgar/git-cron-runner:latest
             ghcr.io/owentrafalgar/git-cron-runner:${{ steps.tag_version.outputs.new_tag }}
+          annotations: |
+            org.opencontainers.image.description=Generic container that clones a Git repo, runs a script on a schedule, and commits/pushes changes back.
+            org.opencontainers.image.source=https://github.com/owentrafalgar/git-cron-runner
