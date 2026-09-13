@@ -10,6 +10,8 @@ on:
 jobs:
   check-changes:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     outputs:
       should_build: ${{ steps.check.outputs.should_build }}
     steps:
