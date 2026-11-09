@@ -5,8 +5,8 @@ LABEL org.opencontainers.image.source="https://github.com/owentrafalgar/git-cron
 LABEL org.opencontainers.image.licenses="MIT"
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        bash git wget ca-certificates cron python3 python3-croniter && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        bash git wget ca-certificates cron tzdata python3 python3-croniter && \
     rm -rf /var/lib/apt/lists/*
 
 COPY run.sh /run.sh

@@ -26,7 +26,11 @@ All configuration is done via environment variables, typically in a `stack.env` 
 
 ## Volumes
 
-- `/repo` - persists the cloned repo between runs (avoids re-cloning every time)
+- `/repo` - persists the cloned repo between runs (avoids re-cloning every time). Treat it as a
+  disposable working copy: before each run it is hard-reset to the remote branch and untracked
+  files are removed, so leftovers from failed runs never block or leak into later runs. The token
+  is not stored in it; it is supplied from `GIT_TOKEN` at runtime, so token changes take effect
+  on the next run.
 - `/status` - contains `status.status` (`TIMESTAMP=...` / `EXIT_CODE=...`) for external monitoring (e.g. a Checkmk local check)
 
 ## Versioning
